@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float speed;
+    public float speed = 3;
     // Start is called before the first frame update
     private void FixedUpdate()
     {
@@ -12,10 +12,10 @@ public class Movement : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
         if (horizontal != 0 || vertical != 0)
         {
-            lastHorizontal = horizontal;
-            lastVertical = vertical;
+            float lastHorizontal = horizontal;
+            float lastVertical = vertical;
         }
-        direction = new Vector3(horizontal, vertical, 0);
+        Vector3 direction = new Vector3(horizontal, vertical, 0);
         transform.position += direction * speed * Time.deltaTime;
 
     }
