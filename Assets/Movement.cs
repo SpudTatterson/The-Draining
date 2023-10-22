@@ -15,10 +15,10 @@ public class Movement : MonoBehaviour
         float vertical = Input.GetAxisRaw("Vertical");
         if (horizontal != 0 || vertical != 0)
         {
-            lastHorizontal = horizontal;
-            lastVertical = vertical;
+            float lastHorizontal = horizontal;
+            float lastVertical = vertical;
         }
-        direction = new Vector3(horizontal, vertical, 0);
+        Vector3 direction = new Vector3(horizontal, vertical, 0);
         transform.position += direction * speed * Time.deltaTime;
 
     }
