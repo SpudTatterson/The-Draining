@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Interactor : MonoBehaviour
 {
+    [Header("Settings")]
+    [SerializeField] KeyCode interactionKey = KeyCode.E;
+
+
+    [Header("References")]
     Camera cam;
 
     void Start()
@@ -12,7 +17,7 @@ public class Interactor : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetButtonDown("Fire1"))
+        if(Input.GetButtonDown("Fire1") || Input.GetKeyDown(interactionKey))
         {
             RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             Interactable interactable =hit.collider.GetComponentInParent<Interactable>();
