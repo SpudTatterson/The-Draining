@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
+    [Header("Settings")]
     [SerializeField] float interactionDistance = 5f;
+
+    [Header("References")]
     public Transform interactionPoint;
 
     void Awake()
