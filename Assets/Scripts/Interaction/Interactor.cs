@@ -15,9 +15,18 @@ public class Interactor : MonoBehaviour
         if(Input.GetButtonDown("Fire1"))
         {
             RaycastHit2D hit = Physics2D.Raycast(cam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-            if(hit.collider != null && hit.collider.GetComponentInParent<Interactable>())
+            Interactable interactable =hit.collider.GetComponentInParent<Interactable>();
+            if(hit.collider != null && interactable != null)
             {
-                Debug.Log("interacted");
+                if(Physics2D.OverlapCircle(interactable.interactionPoint.position, interactable.GetInteractionDistance()))
+                {
+                    interactable.Interact(this);
+                }
+                else
+                {
+                    // need to get closer 
+                    // if movement is point and click then send command to walk towards interactable
+                }
             }
         }
     }

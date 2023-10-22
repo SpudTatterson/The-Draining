@@ -4,15 +4,37 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] float interactionDistance = 5f;
+    public Transform interactionPoint;
+
+    void Awake()
     {
-        
+        if (interactionPoint == null) // if interaction point is missing generate one
+        {
+            GenerateInteractionPoint();
+        }
+    }
+    public virtual void Interact(Interactor interactor)
+    {
+
+    }
+    public float GetInteractionDistance()
+    {
+        return interactionDistance;
+    }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Color(0, 1, 0, 0.5f);
+
+        Gizmos.DrawSphere(interactionPoint.position, interactionDistance);
     }
 
-    // Update is called once per frame
-    void Update()
+    void GenerateInteractionPoint()
     {
-        
+        GameObject interactionPoint = new GameObject("Interaction_Point");
+        interactionPoint.transform.position = transform.position;
+        interactionPoint.transform.rotation = transform.rotation;
+        interactionPoint.transform.parent = transform;
+        this.interactionPoint = interactionPoint.transform;
     }
 }
