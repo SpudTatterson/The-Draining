@@ -5,6 +5,8 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     public float speed;
+    public float lastHorizontal;
+    public float lastVertical;
     public Vector3 direction;
     // Start is called before the first frame update
     private void FixedUpdate()
